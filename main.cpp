@@ -2,21 +2,22 @@
 
 using namespace std;
 
-int max(int a, int b);
+double max(double a, double b);
 
 int main()
 {
     cout << "Enter A and B: ";
-    int a, b;
+    double a, b;
     cin >> a >> b;
     cout << "A + B = " << a + b << '\n'
          << "A - B = " << a - b << '\n'
          << "A * B = " << a * b << '\n'
-         << "A / B = " << a / b << '\n';
+         << "A / B = " << a / b << '\n'
+         << "max(A,B) = " << max(a,b) << '\n';
     return 0;
 }
 
-int max(int a, int b)
+double max(double a, double b)
 {
     if (a > b)
         return a;
