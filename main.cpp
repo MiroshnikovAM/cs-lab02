@@ -2,7 +2,7 @@
 
 using namespace std;
 
-double max(double a, double b);
+double min(double a, double b);
 
 int main()
 {
@@ -13,13 +13,13 @@ int main()
          << "A - B = " << a - b << '\n'
          << "A * B = " << a * b << '\n'
          << "A / B = " << a / b << '\n'
-         << "max(A,B) = " << max(a,b) << '\n';
+         << "min(A, B) = " << min(a, b) << '\n'
     return 0;
 }
 
-double max(double a, double b)
+double min(double a, double b)
 {
-    if (a > b)
+    if (a < b)
         return a;
     else
         return b;
