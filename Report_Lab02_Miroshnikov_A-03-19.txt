@@ -1,0 +1,1293 @@
+РПОСУ. Отчёт по ЛР № 2 "Система контроля версий Git"
+Выполнил:
+студент группы А-03-19
+Мирошников Алексей
+
+1) Открываю GitBash:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02
+
+2) Запрашиваю список файлов
+$ ls
+
+3) Ответ пустой, папка пуста
+
+4) Создаю директории:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02
+$ mkdir alice
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02
+$ mkdir bob
+
+5) Запрашиваю список файлов
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02
+$ ls
+alice/  bob/
+
+6) Перехожу в директорию alice
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02
+$ cd alice
+
+7) Создаю папку project и перехожу в неё
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice
+$ mkdir project
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice
+$ cd project
+
+8) Перехожу из каталога вверх, затем снова в каталог project
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project
+$ cd ..
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice
+$ cd project
+
+9) Инициализирую repository и проверяю наличие скрытой папки:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project
+$ git init
+Initialized empty Git repository in D:/documents/MPEI/Development/lab02/alice/project/.git/
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ ls -A
+.git/
+
+10) Ввожу настройки repository:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git config user.name 'Alice (MiroshnikovAM)'
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git config user.email 'alice@example.com'
+
+11) Создаю проект консольного приложения и собираю его
+
+12) Проверяю структуру файлов:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ ls
+bin/  main.cpp  obj/  project.cbp
+
+13) Смотрю состояние рабочей копии:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git status
+On branch master // в ветке master
+
+No commits yet // нет коммитов
+
+Untracked files: // есть неотслеживаемые файлы
+  (use "git add <file>..." to include in what will be committed) // подсказка git
+
+        bin/        // список таких файлов
+        main.cpp
+        obj/
+        project.cbp
+
+nothing added to commit but untracked files present (use "git add" to track)
+// ничего не добавлено в комит, но есть неотслеживаемые файлы
+
+14) Добавляем файл в отслеживаемые (в индекс): 
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git add main.cpp
+
+15) Смотрим состояние рабочей копии и анализируем изменения:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed: // появились изменения, которые нужно закомитить
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   main.cpp // какой файл подлежит комиту
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        bin/        // Список неотслеживаемых файлов уменьшился
+        obj/
+        project.cbp
+
+16) Коммит с файлом main.cpp :
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git commit -m 'code: заготовка программы'
+[master (root-commit) 2967c64] code: заготовка программы
+ 1 file changed, 9 insertions(+)
+ create mode 100644 main.cpp
+
+17) Добавляю файл project.cbp в индекс:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git add project.cbp
+warning: LF will be replaced by CRLF in project.cbp.
+The file will have its original line endings in your working directory
+
+18) Проверяю статус рабочей копии:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   project.cbp
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        bin/
+        obj/
+
+
+19) Создаю коммит с файлом project.cbp : 
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git commit -m 'build: добавлен файл проекта'
+[master 257ae8c] build: добавлен файл проекта
+ 1 file changed, 42 insertions(+)
+ create mode 100644 project.cbp
+
+20) Вношу изменения в тело main
+
+21) Проверяю статус рабочей копии :
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git status
+On branch master
+Changes not staged for commit: // изменение является непроиндексированным
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   main.cpp // не новый файл, а модифицированный
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        bin/        // на них нам по-прежнему всё равно
+        obj/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+// нет изменений добавленных в коммит
+
+22) Выбираем файлы, изменения которых должны войти в коммит:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git add main.cpp
+
+23) Делаем коммит:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git commit -m "code: добавлен ввод"
+[master d553d65] code: добавлен ввод
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+24) Добавляю в программу вывод суммы a и b:
+
+cout << "a + b = " << a + b << endl;
+
+25) Собираю проект
+
+26) Добавляю в индекс изменения: 
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git add -u
+
+27) Делаю коммит:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git commit -m "code: добавлен вывод"
+[master 1394a68] code: добавлен вывод
+ 1 file changed, 1 insertion(+)
+
+28) Добавляю в программу вывод разности a и b:
+
+cout << "a - b = " << a - b << endl;
+
+29) Оказалось, что вывод неправильный, вношу изменения в код:
+
+cout << "A + B = " << a + b << '\n'
+     << "A - B = " << a - b << '\n';
+
+30) Собираю проект
+
+31) Делаю коммит: 
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git commit -a -m "code: изменена архитектура вывода"
+[master d6b6822] code: изменена архитектура вывода
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+32) Создаю .gitignore и сохраняю в корне repository:
+
+/bin
+
+33) Проверяю статус рабочей копии: 
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        .gitignore
+        obj/
+        project.depend
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+34) Добавляю .gitignore в индекс:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git add .gitignore
+
+35) Комичу .gitgnore :
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git commit -m 'Добавлен файл .gitignore'
+[master 0b3b1e1] Добавлен файл .gitignore
+ 1 file changed, 1 insertion(+)
+ create mode 100644 .gitignore
+
+35.1) Добавляю obj в .gitignore , индексирую, комичу:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git add .gitignore
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git commit -m 'Modified .gitignore'
+[master f3ed36b] Modified .gitignore
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+
+36) Журнал репозитария: 
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git log --stat
+commit 0b3b1e10f49157eebf8588cb92e7e853a0a3e9fd (HEAD -> master)
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 12:33:53 2020 +0300
+
+    Добавлен файл .gitignore
+
+ .gitignore | 1 +
+ 1 file changed, 1 insertion(+)
+
+/*
+коммит <хэш коммита> (куда указывает HEAD? на master)
+автор: такой-то сякой-то
+Дата коммита
+комментарий коммита
+добавлен файл .gitinore | с одним insertion (измененние добавлением)
+итого 1 файл изменен, 1 вставка
+*/
+
+commit d6b68220c52f932e6d036a73b28de9c8690a6057
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 12:18:40 2020 +0300
+
+    code: изменена архитектура вывода
+
+ main.cpp | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 1394a6882c8c2c543cbe65ff1f08daf84d310006
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 12:14:14 2020 +0300
+
+    code: добавлен вывод
+:...skipping...
+commit 0b3b1e10f49157eebf8588cb92e7e853a0a3e9fd (HEAD -> master)
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 12:33:53 2020 +0300
+
+    добавлен файл .gitignore
+
+ .gitignore | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit d6b68220c52f932e6d036a73b28de9c8690a6057
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 12:18:40 2020 +0300
+
+    code: изменена архитектура вывода
+
+ main.cpp | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 1394a6882c8c2c543cbe65ff1f08daf84d310006
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 12:14:14 2020 +0300
+
+    code: добавлен вывод
+
+ main.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit d553d6576930725c9ce18756ff15262ffbafcc4d
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 12:04:15 2020 +0300
+
+    code: добавлен ввод
+
+ main.cpp | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 257ae8c22b97b3ab6dd82349553edcc3b59cc35a
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 11:50:50 2020 +0300
+
+    build: добавлен файл проекта
+
+ project.cbp | 42 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+commit 2967c640085b8fc69b9fd0301c4c2a21f61f8ee7
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 11:45:34 2020 +0300
+
+    code: заготовка программы
+
+ main.cpp | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+37) Сокращенный вывод журнала repository : 
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git log --oneline --decorate
+0b3b1e1 (HEAD -> master) Добавлен файл .gitignore
+d6b6822 code: изменена архитектура вывода
+1394a68 code: добавлен вывод
+d553d65 code: добавлен ввод
+257ae8c build: добавлен файл проекта
+2967c64 code: заготовка программы
+
+38) Сокращенный вывод журнала repository для всех веток:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git log --oneline --decorate --all --graph
+* 0b3b1e1 (HEAD -> master) Добавлен файл .gitignore
+* d6b6822 code: изменена архитектура вывода
+* 1394a68 code: добавлен вывод
+* d553d65 code: добавлен ввод
+* 257ae8c build: добавлен файл проекта
+* 2967c64 code: заготовка программы
+
+39) Найдём коммиты по теме build : 
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git log --grep "build:"
+commit 257ae8c22b97b3ab6dd82349553edcc3b59cc35a
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 11:50:50 2020 +0300
+
+    build: добавлен файл проекта
+
+40) Коммиты затрагивающие project.cbp :
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git log -- project.cbp
+commit 257ae8c22b97b3ab6dd82349553edcc3b59cc35a
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 11:50:50 2020 +0300
+
+    build: добавлен файл проекта
+
+41) Смотрю последний коммит:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git show HEAD
+commit 0b3b1e10f49157eebf8588cb92e7e853a0a3e9fd (HEAD -> master)
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 12:33:53 2020 +0300
+
+    Добавлен файл .gitignore
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..7447f89
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1 @@
++/bin
+\ No newline at end of file
+
+42) Смотрю последний коммит 2м способом:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git show master
+commit 0b3b1e10f49157eebf8588cb92e7e853a0a3e9fd (HEAD -> master)
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 12:33:53 2020 +0300
+
+    Добавлен файл .gitignore
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..7447f89
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1 @@
++/bin
+\ No newline at end of file
+
+43) Смотрю последний коммит 3м способом:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git show 0b3b
+commit 0b3b1e10f49157eebf8588cb92e7e853a0a3e9fd (HEAD -> master)
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 12:33:53 2020 +0300
+
+    Добавлен файл .gitignore
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..7447f89
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1 @@
++/bin
+\ No newline at end of file
+
+44) Смотрю предпоследний коммит 3 способами:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git show HEAD~1
+commit d6b68220c52f932e6d036a73b28de9c8690a6057
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 12:18:40 2020 +0300
+
+    code:  изменена архитектура вывода
+
+diff --git a/main.cpp b/main.cpp
+index 7856ef8..5371b30 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -7,6 +7,7 @@ int main()
+     cout << "Enter A and B: ";
+     int a, b;
+     cin >> a >> b;
+-    cout << "a + b = " << a + b << endl;
++    cout << "A + B = " << a + b << '\n'
++         << "A - B = " << a - b << '\n';
+     return 0;
+ }
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git show master~1
+commit d6b68220c52f932e6d036a73b28de9c8690a6057
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 12:18:40 2020 +0300
+
+    code: изменена архитектура вывода
+
+diff --git a/main.cpp b/main.cpp
+index 7856ef8..5371b30 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -7,6 +7,7 @@ int main()
+     cout << "Enter A and B: ";
+     int a, b;
+     cin >> a >> b;
+-    cout << "a + b = " << a + b << endl;
++    cout << "A + B = " << a + b << '\n'
++         << "A - B = " << a - b << '\n';
+     return 0;
+ }
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git show d6b6
+commit d6b68220c52f932e6d036a73b28de9c8690a6057
+Author: Alice (MiroshnikovAM) <alice@example.com>
+Date:   Mon Mar 23 12:18:40 2020 +0300
+
+    code: изменена архитектура вывода
+
+diff --git a/main.cpp b/main.cpp
+index 7856ef8..5371b30 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -7,6 +7,7 @@ int main()
+     cout << "Enter A and B: ";
+     int a, b;
+     cin >> a >> b;
+-    cout << "a + b = " << a + b << endl;
++    cout << "A + B = " << a + b << '\n'
++         << "A - B = " << a - b << '\n';
+     return 0;
+ }
+
+45) Вношу изменения в код, добавляю произведение
+
+46) Смотрю изменения в рабочей копии: 
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git diff
+diff --git a/main.cpp b/main.cpp
+index 5371b30..fbd9488 100644
+--- a/main.cpp  // c минусами - то что было в версии а
++++ b/main.cpp  // c плюсами - то что стало в версии б
+@@ -8,6 +8,7 @@ int main()  // 6 линий убрано с линии 6, 7 добавлено с линии 8
+     int a, b;              // контекст изменений кода
+     cin >> a >> b;
+     cout << "A + B = " << a + b << '\n'
+-         << "A - B = " << a - b << '\n'; // строка удалена
++         << "A - B = " << a - b << '\n'  // строка добавлена
++         << "A * B = " << a * b << '\n'; // строка добавлена
+     return 0;
+ }
+
+47) Показ изменений от указанного коммита до последнего, включая изменения в рабочей копии:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git diff HEAD~2
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..7447f89
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1 @@
++/bin
+\ No newline at end of file
+diff --git a/main.cpp b/main.cpp
+index 7856ef8..fbd9488 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -7,6 +7,8 @@ int main()
+     cout << "Enter A and B: ";
+     int a, b;
+     cin >> a >> b;
+-    cout << "a + b = " << a + b << endl;
++    cout << "A + B = " << a + b << '\n'
++         << "A - B = " << a - b << '\n'
++         << "A * B = " << a * b << '\n';
+     return 0;
+ }
+
+48) Разница между указанными коммитами:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git diff HEAD~2 HEAD
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..7447f89
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1 @@
++/bin
+\ No newline at end of file
+diff --git a/main.cpp b/main.cpp
+index 7856ef8..5371b30 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -7,6 +7,7 @@ int main()
+     cout << "Enter A and B: ";
+     int a, b;
+     cin >> a >> b;
+-    cout << "a + b = " << a + b << endl;
++    cout << "A + B = " << a + b << '\n'
++         << "A - B = " << a - b << '\n';
+     return 0;
+ }
+
+49) Смотрю разность между первым коммитом и коммитом с добавлением вывода разности:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git diff 2967c64 1394a68
+diff --git a/main.cpp b/main.cpp
+index b4392ec..7856ef8 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -4,6 +4,9 @@ using namespace std;
+
+ int main()
+ {
+-    cout << "Hello world!" << endl;
++    cout << "Enter A and B: ";
++    int a, b;
++    cin >> a >> b;
++    cout << "a + b = " << a + b << endl;
+     return 0;
+ }
+diff --git a/project.cbp b/project.cbp
+new file mode 100644
+index 0000000..971cb1f
+--- /dev/null
++++ b/project.cbp
+@@ -0,0 +1,42 @@
++<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
++<CodeBlocks_project_file>
++       <FileVersion major="1" minor="6" />
++       <Project>
++               <Option title="project" />
++               <Option pch_mode="2" />
++               <Option compiler="mingw-w64_gcc" />
++               <Build>
++                       <Target title="Debug">
++                               <Option output="bin/Debug/project" prefix_auto="1" extension_auto="1" />
++                               <Option object_output="obj/Debug/" />
++                               <Option type="1" />
++                               <Option compiler="mingw-w64_gcc" />
++                               <Compiler>
++                                       <Add option="-g" />
++                               </Compiler>
++                       </Target>
++                       <Target title="Release">
++                               <Option output="bin/Release/project" prefix_auto="1" extension_auto="1" />
++                               <Option object_output="obj/Release/" />
++                               <Option type="1" />
++                               <Option compiler="mingw-w64_gcc" />
++                               <Compiler>
++                                       <Add option="-O2" />
++                               </Compiler>
++                               <Linker>
++                                       <Add option="-s" />
++                               </Linker>
++                       </Target>
++               </Build>
++               <Compiler>
++                       <Add option="-Wall" />
+
+50) Комичу изменения в рабочей копии (вывод произведения) :
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git add main.cpp
+
+51) Откат изменений:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git commit -m 'code: Added difference output'
+[master 1c4b57e] code: Added difference output
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git reset --hard HEAD~1
+HEAD is now at f3ed36b Modified .gitignore
+
+52) Добавили комментарий, откатываем:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git checkout HEAD -- main.cpp
+
+53) Настраиваем origin и пушим репозитрий на сервер github :
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git remote add origin https://github.com/MiroshnikovAM/cs-lab02.git
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git push -u origin master
+Enumerating objects: 21, done.
+Counting objects: 100% (21/21), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (18/18), done.
+Writing objects: 100% (21/21), 2.68 KiB | 687.00 KiB/s, done.
+Total 21 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), done.
+To https://github.com/MiroshnikovAM/cs-lab02
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+54) Клонирую проект для Bob:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob
+$ git remote -v
+fatal: not a git repository (or any of the parent directories): .git
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob
+$ git clone https://github.com/MiroshnikovAM/cs-lab02 project
+Cloning into 'project'...
+remote: Enumerating objects: 21, done.
+remote: Counting objects: 100% (21/21), done.
+remote: Compressing objects: 100% (16/16), done.
+remote: Total 21 (delta 2), reused 21 (delta 2), pack-reused 0
+Unpacking objects: 100% (21/21), done.
+
+55) Настраиваем Git для Bob: 
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob
+$ cd project
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master)
+$ git config user.name 'Bob (MiroshnikovAM)'
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master)
+$ git config user.email 'bob@example.com'
+
+56) Добавляем умножение в коде боба и делаем коммит:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master)
+$ git add main.cpp
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master)
+$ git commit -m 'Added multyplication'
+[master 1ab1e00] Added multyplication
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+57) Пушим на сервер правки Bob:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master)
+$ git push -u origin master
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 379 bytes | 379.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/MiroshnikovAM/cs-lab02
+   f3ed36b..1ab1e00  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+58) Загрузка изменений для Alice :
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git fetch
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/MiroshnikovAM/cs-lab02
+   f3ed36b..1ab1e00  master     -> origin/master
+
+59) Смотрим историю всех веток: 
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git log --oneline --decorate --all --graph
+* 1ab1e00 (origin/master) Added multyplication
+* f3ed36b (HEAD -> master) Modified .gitignore
+* 0b3b1e1 Добавлен файл .gitignore
+* d6b6822 code: изменена архитектура вывода
+* 1394a68 code: добавлен вывод
+* d553d65 code: добавлен ввод
+* 257ae8c build: добавлен файл проекта
+* 2967c64 code: заготовка программы
+
+60) Двигаем ветку master к скачанной версии:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git pull --ff-only
+Updating f3ed36b..1ab1e00
+Fast-forward
+ main.cpp | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+61) «От имени Алисы» добавляем в программу печать деления, комитим, пушим:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git add main.cpp
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git commit -m 'Added Division'
+[master 4a21d3a] Added Division
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git push -u origin master
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 394 bytes | 394.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/MiroshnikovAM/cs-lab02
+   1ab1e00..4a21d3a  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+62) Получаем новую версию «на машине Боба» :
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master)
+$ git fetch
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/MiroshnikovAM/cs-lab02
+   1ab1e00..4a21d3a  master     -> origin/master
+
+63) Добавляем МАХ Алисе, комитим, пушим: 
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git add main.cpp
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git commit -m 'code: Added MAX'
+[master 7f386df] code: Added MAX
+ 1 file changed, 10 insertions(+)
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git push -u origin master
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 414 bytes | 414.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/MiroshnikovAM/cs-lab02
+   4a21d3a..7f386df  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+64) Добавляем МIN Бобу, комитим, пушим:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master)
+$ git add main.cpp
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master)
+$ git commit -m 'code: Added MIN'
+[master 7259820] code: Added MIN
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master)
+$ git push -u origin master
+To https://github.com/MiroshnikovAM/cs-lab02
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/MiroshnikovAM/cs-lab02'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+65) Обновляем данные Бобу:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master)
+$ git fetch
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/MiroshnikovAM/cs-lab02
+   4a21d3a..7f386df  master     -> origin/master
+
+66) Смотрим историю всех веток:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master)
+$ git log --oneline --decorate --all --graph
+* 7259820 (HEAD -> master) code: Added MIN
+| * 7f386df (origin/master, origin/HEAD) code: Added MAX
+| * 4a21d3a Added Division
+|/
+* 1ab1e00 Added multyplication
+* f3ed36b Modified .gitignore
+* 0b3b1e1 Добавлен файл .gitignore
+* d6b6822 code: изменена архитектура вывода
+* 1394a68 code: добавлен вывод
+* d553d65 code: добавлен ввод
+* 257ae8c build: добавлен файл проекта
+* 2967c64 code: заготовка программы
+
+67) Бобу нужно переместить свой коммит поверх коммита Алисы, то есть поверх origin/master:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master)
+$ git rebase origin/master
+First, rewinding head to replay your work on top of it...
+Applying: code: Added MIN
+Using index info to reconstruct a base tree...
+M       main.cpp
+Falling back to patching base and 3-way merge...
+Auto-merging main.cpp
+CONFLICT (content): Merge conflict in main.cpp
+error: Failed to merge in the changes. // смерджить не вышло!
+hint: Use 'git am --show-current-patch' to see the failed patch
+Patch failed at 0001 code: Added MIN
+Resolve all conflicts manually, mark them as resolved with
+"git add/rm <conflicted_files>", then run "git rebase --continue".
+You can instead skip this commit: run "git rebase --skip".
+To abort and get back to the state before "git rebase", run "git rebase --abort".
+
+68) Просмотрим состояние рабочей копии:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master|REBASE 1/1)
+$ git status
+rebase in progress; onto 7f386df // сейчас мастер указывает на какой-то другой коммит
+You are currently rebasing branch 'master' on '7f386df'. // пытается поменять но не может
+  (fix conflicts and then run "git rebase --continue") // процесс в прогрессе
+  (use "git rebase --skip" to skip this patch)
+  (use "git rebase --abort" to check out the original branch)
+
+Unmerged paths:
+  (use "git reset HEAD <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+
+        both modified:   main.cpp // несмердженные пути где модифицирован этот файл
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        project.layout // не следим
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+69) Разрешаем конфликь, добавляем файл в индекс и продолжаем прерванную операцию rebase:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master|REBASE 1/1)
+$ git add main.cpp
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master|REBASE 1/1)
+$ git rebase --continue
+Applying: code: Added MIN
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master)
+$ git log --oneline --decorate --all --graph
+* 4f52ef8 (HEAD -> master) code: Added MIN
+* 7f386df (origin/master, origin/HEAD) code: Added MAX
+* 4a21d3a Added Division
+* 1ab1e00 Added multyplication
+* f3ed36b Modified .gitignore
+* 0b3b1e1 Добавлен файл .gitignore
+* d6b6822 code: изменена архитектура вывода
+* 1394a68 code: добавлен вывод
+* d553d65 code: добавлен ввод
+* 257ae8c build: добавлен файл проекта
+* 2967c64 code: заготовка программы         // Смерджилось!
+
+70) Пушим на сервер:
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/bob/project (master)
+$ git push -u origin master
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 432 bytes | 432.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/MiroshnikovAM/cs-lab02
+   7f386df..4f52ef8  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+71) Создаем новую ветку, переходим в неё, меняем программу и комитим изменения :
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git branch double
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git checkout double
+Switched to branch 'double'
+M       main.cpp
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (double)
+$ git add main.cpp
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (double)
+$ git commit -m 'code: changed int to double'
+[double bee1a6e] code: changed int to double
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (double)
+$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+72) Синхронизируем ветку Алисы с GitHub :
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git fetch
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/MiroshnikovAM/cs-lab02
+   7f386df..4f52ef8  master     -> origin/master
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git log --oneline --decorate --all --graph
+* bee1a6e (double) code: changed int to double
+| * 4f52ef8 (origin/master) code: Added MIN
+|/
+* 7f386df (HEAD -> master) code: Added MAX
+* 4a21d3a Added Division
+* 1ab1e00 Added multyplication
+* f3ed36b Modified .gitignore
+* 0b3b1e1 Добавлен файл .gitignore
+* d6b6822 code: изменена архитектура вывода
+* 1394a68 code: добавлен вывод
+* d553d65 code: добавлен ввод
+* 257ae8c build: добавлен файл проекта
+* 2967c64 code: заготовка программы
+
+73) Merging double in master :
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git merge double
+Updating 7f386df..bee1a6e
+Fast-forward
+ main.cpp | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git log --oneline --decorate --all --graph
+* bee1a6e (HEAD -> master, double) code: changed int to double
+| * 4f52ef8 (origin/master) code: Added MIN
+|/
+* 7f386df code: Added MAX
+* 4a21d3a Added Division
+* 1ab1e00 Added multyplication
+* f3ed36b Modified .gitignore
+* 0b3b1e1 Добавлен файл .gitignore
+* d6b6822 code: изменена архитектура вывода
+* 1394a68 code: добавлен вывод
+* d553d65 code: добавлен ввод
+* 257ae8c build: добавлен файл проекта
+* 2967c64 code: заготовка программы
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git push -u origin master
+To https://github.com/MiroshnikovAM/cs-lab02
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/MiroshnikovAM/cs-lab02'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git add main.cpp
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git merge double
+Already up to date.
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git add main.cpp
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git push -u origin master
+To https://github.com/MiroshnikovAM/cs-lab02
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/MiroshnikovAM/cs-lab02'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git log --oneline --decorate --all --graph
+* bee1a6e (HEAD -> master, double) code: changed int to double
+| * 4f52ef8 (origin/master) code: Added MIN
+|/
+* 7f386df code: Added MAX
+* 4a21d3a Added Division
+* 1ab1e00 Added multyplication
+* f3ed36b Modified .gitignore
+* 0b3b1e1 Добавлен файл .gitignore
+* d6b6822 code: изменена архитектура вывода
+* 1394a68 code: добавлен вывод
+* d553d65 code: добавлен ввод
+* 257ae8c build: добавлен файл проекта
+* 2967c64 code: заготовка программы
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git checkout double
+Switched to branch 'double'
+M       main.cpp
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (double)
+$ git add main.cpp
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (double)
+$ git checkout master
+Switched to branch 'master'
+M       main.cpp
+Your branch and 'origin/master' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git pull
+error: Your local changes to the following files would be overwritten by merge:
+  main.cpp
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git push -u origin master
+To https://github.com/MiroshnikovAM/cs-lab02
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/MiroshnikovAM/cs-lab02'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git checkout double
+Switched to branch 'double'
+M       main.cpp
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (double)
+$ git add main.cpp
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (double)
+$ git commit -m 'code: Added double min'
+[double 64c1f4e] code: Added double min
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (double)
+$ git log --oneline --decorate --all --graph
+* 64c1f4e (HEAD -> double) code: Added double min
+* bee1a6e (master) code: changed int to double
+| * 4f52ef8 (origin/master) code: Added MIN
+|/
+* 7f386df code: Added MAX
+* 4a21d3a Added Division
+* 1ab1e00 Added multyplication
+* f3ed36b Modified .gitignore
+* 0b3b1e1 Добавлен файл .gitignore
+* d6b6822 code: изменена архитектура вывода
+* 1394a68 code: добавлен вывод
+* d553d65 code: добавлен ввод
+* 257ae8c build: добавлен файл проекта
+* 2967c64 code: заготовка программы
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (double)
+$ git checkout master
+Switched to branch 'master'
+Your branch and 'origin/master' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git merge double
+Updating bee1a6e..64c1f4e
+Fast-forward
+ main.cpp | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git log --oneline --decorate --all --graph
+* 64c1f4e (HEAD -> master, double) code: Added double min
+* bee1a6e code: changed int to double
+| * 4f52ef8 (origin/master) code: Added MIN
+|/
+* 7f386df code: Added MAX
+* 4a21d3a Added Division
+* 1ab1e00 Added multyplication
+* f3ed36b Modified .gitignore
+* 0b3b1e1 Добавлен файл .gitignore
+* d6b6822 code: изменена архитектура вывода
+* 1394a68 code: добавлен вывод
+* d553d65 code: добавлен ввод
+* 257ae8c build: добавлен файл проекта
+* 2967c64 code: заготовка программы
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git fetch
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git reset hard HEAD~1
+fatal: ambiguous argument 'hard': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git reset -hard HEAD~1
+error: did you mean `--hard` (with two dashes ?)
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git reset --hard HEAD~1
+HEAD is now at bee1a6e code: changed int to double
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git log --oneline --decorate --all --graph
+* 64c1f4e (double) code: Added double min
+* bee1a6e (HEAD -> master) code: changed int to double
+| * 4f52ef8 (origin/master) code: Added MIN
+|/
+* 7f386df code: Added MAX
+* 4a21d3a Added Division
+* 1ab1e00 Added multyplication
+* f3ed36b Modified .gitignore
+* 0b3b1e1 Добавлен файл .gitignore
+* d6b6822 code: изменена архитектура вывода
+* 1394a68 code: добавлен вывод
+* d553d65 code: добавлен ввод
+* 257ae8c build: добавлен файл проекта
+* 2967c64 code: заготовка программы
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git pull
+Auto-merging main.cpp
+CONFLICT (content): Merge conflict in main.cpp
+Automatic merge failed; fix conflicts and then commit the result.
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master|MERGING)
+$ git add 'main.cpp'
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master|MERGING)
+$ git add main.cpp
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master|MERGING)
+$ git commit -m 'code: double-merge conflict solution'
+[master 6156f42] code: double-merge conflict solution
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git merge double
+Auto-merging main.cpp
+CONFLICT (content): Merge conflict in main.cpp
+Automatic merge failed; fix conflicts and then commit the result.
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master|MERGING)
+$ git add main.cpp
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master|MERGING)
+$ git merge double
+fatal: You have not concluded your merge (MERGE_HEAD exists).
+Please, commit your changes before you merge.
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master|MERGING)
+$ git merge --continue
+hint: Waiting for your editor to close the file...
+[master 6781be7] Merge branch 'double'
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git log --oneline --decorate --all --graph
+*   6781be7 (HEAD -> master) Merge branch 'double'
+|\
+| * 64c1f4e (double) code: Added double min
+* |   6156f42 code: double-merge conflict solution
+|\ \
+| |/
+|/|
+| * 4f52ef8 (origin/master) code: Added MIN
+* | bee1a6e code: changed int to double
+|/
+* 7f386df code: Added MAX
+* 4a21d3a Added Division
+* 1ab1e00 Added multyplication
+* f3ed36b Modified .gitignore
+* 0b3b1e1 Добавлен файл .gitignore
+* d6b6822 code: изменена архитектура вывода
+* 1394a68 code: добавлен вывод
+* d553d65 code: добавлен ввод
+* 257ae8c build: добавлен файл проекта
+* 2967c64 code: заготовка программы
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$ git push -u origin master
+Enumerating objects: 16, done.
+Counting objects: 100% (16/16), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (12/12), 1.39 KiB | 711.00 KiB/s, done.
+Total 12 (delta 5), reused 0 (delta 0)
+remote: Resolving deltas: 100% (5/5), completed with 1 local object.
+To https://github.com/MiroshnikovAM/cs-lab02
+   4f52ef8..6781be7  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+xrtt@DESKTOP-V353GDI MINGW32 /d/documents/MPEI/Development/lab02/alice/project (master)
+$
